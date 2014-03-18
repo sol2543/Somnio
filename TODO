@@ -1,0 +1,42 @@
+	Somnio (Latin for "dream,") A Linux media sleep timer.
+
+The project objective is to create a media time program for the Linux platform. The software would allow for a user to select media to play – video, music, etc – and then select a time which the software counts down from. Then the software would play the selected media and slowly ramp down the screen brightness level and volume level. This would allow the user to fall asleep to whatever they wanted, regardless of the media, whenever they wanted without having to worry about being woken up by it later or worrying about turning it off. The program would exit once the timer is up and the user could leave, fall asleep, or whatever without having to worry about their media still playing. 
+
+Manage it with git.
+
+Make it modular, invoke other scripts. 
+
+GUI and/or some scripts in Python
+
+Maintain a CHANGELOG and TODO on repo. 
+
+Efficiency main priority, minimum of key presses and data entry. 
+
+Dependencies: xbacklight for non-sudo backlight adjustment. Uses amixer for volume adjustment. mplayer/vlc for file playback.
+
+
+-----------------------
+
+
+CURRENT TODO:
+
+Do levels.sh to dynamically adjust volume and brightness
+
+Figure out python gui
+
+Write README
+
+Figure out error check bash while loop if not number
+
+Figure out bash kill spawned job processes
+
+Maintain git page
+
+Write script for handling internet radio streams
+
+Fine tune the timer so audio and brightness sync appropriately
+
+Figure out elegant quit and way for user to quit, implement on gui. 
+
+Much more...
+

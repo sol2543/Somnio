@@ -1,0 +1,6 @@
+	Somnio (Latin for "dream,") A Linux media sleep timer.
+
+
+
+
+Dependencies: xbacklight, amixer, python, mplayer, vlc, bash, zenity. 
