@@ -3,4 +3,8 @@
 
 
 
-Dependencies: xbacklight, amixer, python, mplayer, vlc, bash, zenity. 
+Dependencies: xbacklight, amixer, python, wxpython, mplayer, bash, zenity.
+
+To run the program, just type ./Somnio.sh in your terminal, or assign it to a keybinding. 
+
+
