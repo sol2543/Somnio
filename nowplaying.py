@@ -1,9 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# center.py
-
 import wx
+import subprocess
 
 APP_EXIT = 1
 now_playing = 'np.png'
@@ -20,6 +19,9 @@ class sMain(wx.Frame):
 		sMenu = wx.MenuBar()
 		npPanel = wx.Panel(self)
 		np1 = wx.Image(now_playing, wx.BITMAP_TYPE_ANY).ConvertToBitmap()
+		icon = wx.IconBundle()
+		icon.AddIconFromFile("icon.png", wx.BITMAP_TYPE_ANY)
+		self.SetIcons(icon)
 		self.bitmap1 = wx.StaticBitmap(self, -1, np1, (55, 30))	
 		sFileMenu = wx.Menu()
 		sAboutHelpMenu = wx.Menu()
@@ -44,15 +46,16 @@ class sMain(wx.Frame):
 		self.Show()
         
 	def OnQuit(self, e):
+		subprocess.call("./quit.sh", shell=True)
 		self.Close()
 
 	def helpMessage(self, event):
-		hDialog = wx.MessageDialog(self, 'This is the help dialog', 'Help', wx.OK)
+		hDialog = wx.MessageDialog(self, 'To quit Somnio, select Quit from the File dialog menu \n \nTo address any playback problems, consult the list of dependencies listed in the README file within the Somnio directory.', 'Help', wx.OK)
 		hDialog.ShowModal()
 		hDialog.Destroy()
 
 	def aboutMessage(self, event):
-		hDialog = wx.MessageDialog(self, 'This is the ABOUT dialog', 'About', wx.OK)
+		hDialog = wx.MessageDialog(self, 'Somnio is a media sleep timer. The application is currently running and will quit after the preselected time period.', 'About', wx.OK)
                 hDialog.ShowModal()
                 hDialog.Destroy()
 

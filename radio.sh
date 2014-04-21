@@ -2,6 +2,6 @@
 
 #Somnio Internet Radio Script
 
-mplayer -playlist "$filesSelected"
+mplayer "$filesSelected" > /dev/null 2>&1
 
 exit

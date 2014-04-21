@@ -1,10 +1,25 @@
-	Somnio (Latin for "dream,") A Linux media sleep timer.
+
+Somnio README:
+--------------
+
+Somnio (Latin for "dream,") A Linux media sleep timer.
+
+Somnio is a media timer program for the Linux platform. The software allows for a user to select media to play – video, music, internet radio stream – and then select a time which the software counts down from. Then the software would play the selected media and slowly ramp down the screen brightness level and volume level. This would allow the user to fall asleep to whatever they wanted, regardless of the media, whenever they wanted without having to worry about being woken up by it later or worrying about turning it off. The program would exit once the timer is up and the user could leave, fall asleep, or whatever without having to worry about their media still playing. 
+
+Dependencies: xbacklight, amixer, python, wxpython, mplayer, xterm, bash, zenity.
+
+Use your package manager to install the necessary dependencies before attempting to run the program.
+For example:
+sudo apt-get install xbacklight
 
 
+To run Somnio, just type:
+./Somnio.sh 
+into your terminal, or assign it to a keybinding. 
 
 
-Dependencies: xbacklight, amixer, python, wxpython, mplayer, bash, zenity.
+Homepage: https://github.com/sol2543/Somnio
 
-To run the program, just type ./Somnio.sh in your terminal, or assign it to a keybinding. 
+
 
 

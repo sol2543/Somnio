@@ -4,14 +4,13 @@
 
 #Launches new window with media playing if video
 
-#Plays in background if music
+#Plays in new term if music
 
 if [ -z $isAudio ];
 	then
-	mplayer -playlist "$filesSelected"
+	mplayer "$filesSelected" > /dev/null 2>&1
 else
-
-	xterm -e mplayer "$filesSelected"
+	xterm -e /usr/bin/mplayer "$filesSelected"
 fi
 
 exit

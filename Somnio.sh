@@ -2,7 +2,7 @@
 
 # Somnio (Latin for "dream,") A Linux media sleep timer.
 
-zenity --info --title="Somnio" --text="Welcome to Somnio, the media sleep timer! Please continue and select the type of media you wish to play... \n\nSomnio will then ask for the amount of time you wish it to run, play the selected media then quit." --height=25 --width=250 --no-wrap
+zenity --info  --title="Somnio" --text="Welcome to Somnio, the media sleep timer! Please continue and select the type of media you wish to play... \n\nSomnio will then ask a few other questions, play your selected media, then quit." --height=25 --width=250 --no-wrap
 
 #Select Media Type
 
@@ -34,51 +34,52 @@ while [ -z "$filesSelected" ];
 
 	if [ "$mediaType" = "Audio" ]; 
 		then
-		filesSelected=$(zenity --file-selection)
+		filesSelected=$(zenity --file-selection --title="Somnio")
 		isAudio=1
+		visPos=1
 	elif [ "$mediaType" = "Video" ]; 
 		then
-		filesSelected=$(zenity --file-selection)
+		filesSelected=$(zenity --file-selection --title="Somnio")
 	else
-		filesSelected=$(zenity --entry --text="Enter the radio stream's address: ")
+		filesSelected=$(zenity --entry --text="Enter the radio stream's address: " --title="Somnio")
 		radioaddy=$filesSelected
+		visPos=1
 	fi
 done
 
+if [ "$visPos" = 1 ];
+	then
+		visChoice=$(zenity --list --title="Select visualizations" --text="Options:" --radiolist --column="" --column="Selections:" TRUE "Sierpinski Triangles Visualization" FALSE "None")
+		echo "Visualization chosen:" $visChoice
+	else
+		:
+fi
 
-numCheck='^[0-9]+$'
-#implement function to check if number 0-999 is entered
+#timerLength=$(zenity --entry --text="Enter the desired sleep timer length in minutes in numeric format (ex: 45): " --title="Somnio");
 
-timerLength=$(zenity --entry --text="Enter the desired sleep timer length in minutes in numeric format (ex: 45): ");
+timerLength=$(zenity --scale --min-value=10 --max-value=240 --value=10 --text="Enter the desired sleep timer length" --title="Somnio");
 
 export isAudio
 export radioaddy
 export filesSelected
 export timerLength
-#echo $radioaddy
-#echo $filesSelected
+export visChoice
+
+lastMinute=$(($timerLength-1))
+echo $lastMinute
 
 if [ -z $radioaddy ];
 	then
 	echo "Audio/Video files selected:"
 	echo $filesSelected
 	#a/v script
-	./av.sh & python nowplaying.py & ./levels.sh & sleep "$timerLength"m
+	./av.sh & python nowplaying.py & ./levels.sh & sleep "$lastMinute"m && echo "One more minute until program shutdown!" && sleep 1m && ./quit.sh
 else
 	echo "Internet radio selected for playback"
 	echo $radioaddy 
 	#radioscript
-	./radio.sh & python nowplaying.py & ./levels.sh & sleep "$timerLength"m
+	./radio.sh & python nowplaying.py & ./levels.sh & sleep "$lastMinute"m && echo "One more minute until program shutdown!" && sleep 1m && ./quit.sh
 fi
-
-
-#call script to decrement brightness and audio levels
-#./levels.sh
-
-
-#sleep "$timerLength"m
-
-# zenity --info --title="Quitting..." --text="Application will quit in 1 minute..."
 
 exit
 
