@@ -40,6 +40,7 @@ while [ -z "$filesSelected" ];
 	elif [ "$mediaType" = "Video" ]; 
 		then
 		filesSelected=$(zenity --file-selection --title="Somnio")
+		visPos=0
 	else
 		filesSelected=$(zenity --entry --text="Enter the radio stream's address: " --title="Somnio")
 		radioaddy=$filesSelected
@@ -64,9 +65,9 @@ export radioaddy
 export filesSelected
 export timerLength
 export visChoice
+export visPos
 
 lastMinute=$(($timerLength-1))
-echo $lastMinute
 
 if [ -z $radioaddy ];
 	then

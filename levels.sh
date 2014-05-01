@@ -14,7 +14,8 @@ export timerLength
 
 #echo "The divValue is: $divValue"
 
-if [[ $visChoice == *None* ]]
+if [[ $visChoice == *None* ]] || [[ $visPos == 0 ]];
+#if [[ $visChoice == *None* ]]
 	then
 
 	while [ $i -lt $timerLength ] 
